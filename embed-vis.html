@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+
+  <script type="text/javascript" src="https://server.com/javascripts/api/tableau-2.min.js">
+
+  </script>
+  <style>
+    #tableauViz {
+      transform: scale(1, 1);
+      transform-origin: 0% 0% 0px;
+    }
+  </style>
+
+</head>
+
+<body style="background-color:rgb(177, 177, 177)">
+  <div style="margin: auto;max-width: 1920px;">
+    <div id="tableauViz"></div>
+  </div>
+  <script type="text/javascript">
+
+    var placeholderDiv = document.getElementById("tableauViz");
+    var url = "https://server.com/#/views/someview";
+    var options = {
+      hideToolbar: true, //Tableau Server toolbar
+      hideTabs: true,
+      width: "1900px",
+      height: "900px",
+      onFirstInteractive: function () { viz.refreshDataAsync() }
+    };
+    var viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+    //setInterval(function () {viz.refreshDataAsync() }, 180000); //async data refresh every 3 minutes
+    setTimeout(function () { location.reload(); }, 30 * 60000); //browser refresh every 30 minutes
+    //setTimeout(function() {window.status = 'ready';}, 10000); 
+    document.body.style.overflow = 'hidden'; //scrollbar
+
+  </script>
+
+</body>
+
+</html>
